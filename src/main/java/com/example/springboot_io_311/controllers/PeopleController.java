@@ -1,20 +1,16 @@
 package com.example.springboot_io_311.controllers;
 
+import com.example.springboot_io_311.entity.Person;
+import com.example.springboot_io_311.service.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import com.example.springboot_io_311.entity.Person;
-import com.example.springboot_io_311.service.PeopleService;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
-
 
 
 @Controller
@@ -63,7 +59,8 @@ public class PeopleController {
         return "people/edit";
     }
 
-    @PostMapping("admin/{id}")
+//    @PatchMapping("/admin/{id}")
+    @PostMapping("/admin/{id}")
     public String UpdatePerson(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult,
                          @PathVariable("id") Long id) {
 
@@ -75,21 +72,13 @@ public class PeopleController {
         return "redirect:/admin";
     }
 
-    @PostMapping("/admin/{id}")
+//    @DeleteMapping("admin/{id}")
+    @PostMapping("/admin/{id}/delete")
     public String deletePerson(@PathVariable("id") Long id) {
         peopleService.delete(id);
         return "redirect:/admin";
     }
 
-    @RequestMapping(value = "hello", method = RequestMethod.GET)
-    public String printWelcome(ModelMap model) {
-        List<String> messages = new ArrayList<>();
-        messages.add("Hello!");
-        messages.add("I'm Spring MVC-SECURITY application");
-        messages.add("5.2.0 version by sep'19 ");
-        model.addAttribute("messages", messages);
-        return "hello";
-    }
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String loginPage() {
