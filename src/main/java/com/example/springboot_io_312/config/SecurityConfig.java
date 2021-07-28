@@ -1,6 +1,6 @@
-package com.example.springboot_io_311.config;
+package com.example.springboot_io_312.config;
 
-import com.example.springboot_io_311.config.handler.LoginSuccessHandler;
+import com.example.springboot_io_312.config.handler.LoginSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;

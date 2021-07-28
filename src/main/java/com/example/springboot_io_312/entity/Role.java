@@ -1,4 +1,4 @@
-package com.example.springboot_io_311.entity;
+package com.example.springboot_io_312.entity;
 
 import org.springframework.security.core.GrantedAuthority;
 

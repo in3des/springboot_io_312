@@ -1,11 +1,11 @@
-package com.example.springboot_io_311.service;
+package com.example.springboot_io_312.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import com.example.springboot_io_311.dao.PersonDAO;
-import com.example.springboot_io_311.entity.Person;
+import com.example.springboot_io_312.dao.PersonDAO;
+import com.example.springboot_io_312.entity.Person;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

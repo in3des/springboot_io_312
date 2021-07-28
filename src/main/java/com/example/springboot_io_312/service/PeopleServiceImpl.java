@@ -1,10 +1,10 @@
-package com.example.springboot_io_311.service;
+package com.example.springboot_io_312.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.example.springboot_io_311.dao.PersonDAO;
-import com.example.springboot_io_311.entity.Person;
+import com.example.springboot_io_312.dao.PersonDAO;
+import com.example.springboot_io_312.entity.Person;
 
 import java.util.List;
 

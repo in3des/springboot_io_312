@@ -1,10 +1,10 @@
-package com.example.springboot_io_311.dao;
+package com.example.springboot_io_312.service;
 
-import com.example.springboot_io_311.entity.Person;
+import com.example.springboot_io_312.entity.Person;
 
 import java.util.List;
 
-public interface PersonDAO{
+public interface PeopleService {
 
     public List<Person> index();
 
@@ -18,10 +18,5 @@ public interface PersonDAO{
 
     public Person findPersonByEmail(String email);
 
-    public Person findPersonByName(String email);
-
-
-
-
+    public Person findPersonByName(String name);
 }
-
