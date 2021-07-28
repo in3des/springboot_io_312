@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All people</title>
+</head>
+<body>
+
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>SURNAME</th>
+        <th>AGE</th>
+        <th>EMAIL</th>
+        <th>PASSWORD</th>
+        <th>ROLE</th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    <tr th:each="person, state : ${people}">
+        <td th:utext="${person.getId()}">..</td>
+        <td th:utext="${person.getName()}">..</td>
+        <td th:utext="${person.getSurname()}">..</td>
+        <td th:utext="${person.getAge()}">..</td>
+        <td th:utext="${person.getEmail()}">..</td>
+        <td th:utext="${person.getPassword()}">..</td>
+        <td th:utext="${person.getRoles()}">..</td>
+        <td>
+            <form th:action="@{/admin/{id}/edit(id=${person.getId()})}">
+                <input type="submit" value="EDIT"/>
+            </form>
+        </td>
+        <td>
+            <form th:method="DELETE" th:action="@{/admin/{id}(id=${person.getId()})}">
+                <input type="submit" value="DELETE"/>
+            </form>
+        </td>
+    </tr>
+
+
+</table>
+
+
+<!--<div th:each="person : ${people}">-->
+<!--    <a th:href="@{/people/{id}(id=${person.getId()})}"  th:text="${person.getName() + ' ' + person.getSurname() + ', age ' + person.getAge()}"></a>-->
+<!--</div>-->
+
+<br>
+<hr>
+
+<!--<a th:href="@{/people/new}">create new user</a>-->
+<form th:action="@{/admin/new}">
+    <input type="submit" value="CREATE NEW"/>
+</form>
+<br>
+<form th:action="@{/logout}">
+    <input type="submit" value="LOGOUT"/>
+</form>
+
+
+</body>
+</html>

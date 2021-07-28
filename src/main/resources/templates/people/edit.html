@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit person</title>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/admin/{id}(id=${person.getId()})}" th:object="${person}">
+    <label for="name">Enter name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+    <br>
+    <label for="surname">Enter surname: &nbsp&nbsp </label>
+    <input type="text" th:field="*{surname}" id="surname"/>
+    <div style="color:red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></div>
+    <br>
+    <label for="age">Enter age: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </label>
+    <input type="text" th:field="*{age}" id="age"/>
+    <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
+    <br>
+    <label for="email">Enter email: &nbsp&nbsp&nbsp&nbsp&nbsp </label>
+    <input type="text" th:field="*{email}" id="email"/>
+    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+    <br>
+    <label for="password">Enter password: </label>
+    <input type="text" th:field="*{password}" id="password"/>
+    <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+    <br>
+    <label for="role">Enter role: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </label>
+<!--    <input type="text" th:field="*{role}" id="role"/>-->
+<!--    <div style="color:red" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></div>-->
+
+<!--    <select th:field="*{roles}" id="role">-->
+<!--        <option th:value="'ROLE_ADMIN'" th:text="ADMIN"></option>-->
+<!--        <option th:value="'ROLE_USER'" th:text="USER"></option>-->
+<!--    </select>-->
+
+    <input type="checkbox" th:field="*{roles}" th:text="ADMIN" th:value="'ROLE_ADMIN'">
+    <input type="checkbox" th:field="*{roles}" th:text="USER" th:value="'ROLE_USER'">
+
+<!--    <th:block th:each="role : ${person.getRoles()}">-->
+<!--        <input type="checkbox" name="sel_roles" id="role" th:field="*{roles}" th:value="${role.id}" th:text="${role.role}" />-->
+<!--    </th:block>-->
+
+
+    <br><br>
+    <input type="submit" value="Update!"/>
+</form>
+
+<br>
+<form th:action="@{/logout}">
+    <input type="submit" value="LOGOUT"/>
+</form>
+
+</body>
+</html>
