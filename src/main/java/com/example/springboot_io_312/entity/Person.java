@@ -8,9 +8,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name="people")
@@ -114,6 +112,17 @@ public class Person implements UserDetails {
 
     public Set<Role> getRoles() {
         return roles;
+    }
+
+    public StringBuilder getRolesToString() {
+        List<Role> reverseListRoles = new ArrayList<Role>(roles);
+        Collections.reverse(reverseListRoles);
+        StringBuilder roleList = new StringBuilder();
+        for (Role role : reverseListRoles) {
+            String tmp = role.toString().substring(5);
+            roleList.append(tmp).append(" ");
+        }
+        return roleList;
     }
 
     public void setRoles(Set<Role> roles) {
