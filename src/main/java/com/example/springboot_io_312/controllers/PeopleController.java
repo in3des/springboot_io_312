@@ -25,9 +25,11 @@ public class PeopleController {
     }
 
     @GetMapping("/admin")
-    public String showIndexPage(Model model, Principal principal) {
-        System.out.println("simple - " + principal.getName());
+//    public String showIndexPage(Model model, Principal principal) {
+    public String showIndexPage(Model model, Authentication authentication) {
+//        System.out.println("simple - " + principal.getName());
         model.addAttribute("people", peopleService.index());
+        model.addAttribute("person", peopleService.findPersonByEmail(((Person) authentication.getPrincipal()).getEmail()));
         return "people/index";
     }
 
