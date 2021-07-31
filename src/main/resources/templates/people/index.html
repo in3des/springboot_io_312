@@ -52,6 +52,9 @@
 
 <div class="container-fluid">
     <div class="row">
+
+<!--        ============ left panel ============-->
+
         <div class="col-lg-2 px-0">
             <div>
                 <br>
@@ -63,6 +66,8 @@
                 </ul>
             </div>
         </div>
+
+<!--        ============ right body ============-->
 
         <div class="col-lg-10 bg-light">
             <div class="container-fluid vh-100">
@@ -122,12 +127,18 @@
                                                         </td>
 
                                                         <td>
+<!--                                                            <a class="btn btn-info eBtn">Edit</a>-->
+
                                                             <form th:action="@{/admin/{id}/edit(id=${person.getId()})}">
                                                                 <input type="submit" value="EDIT"/>
                                                             </form>
+
+<!--                                                            <button type="submit" class="btn btn-info" onclick="@{/admin/{id}/edit(id=${person.getId()})}">-->
+<!--                                                                Edit-->
+<!--                                                            </button>-->
                                                         </td>
                                                         <td>
-                                                            <form th:method="DELETE" th:action="@{/admin/{id}/delete(id=${person.getId()})}">
+                                                            <form th:method="DELETE" th:action="@{/admin/{id}(id=${person.getId()})}">
                                                                 <input type="submit" value="DELETE"/>
                                                             </form>
                                                         </td>
@@ -154,13 +165,72 @@
             </div>
 
         </div>
+
     </div>
 </div>
 
 
 
 
+<!--        ============ modal edit ============-->
 
+        <div class="myForm">
+
+            <form th:action="@{/admin/{id}/edit(id=${person.getId()})}" method="post">
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+<!--                            <form>-->
+                            <div class="form-group">
+                                <label for="id" class="col-form-label">ID</label>
+                                <input type="text" class="form-control" id="id" name="id" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">First Name</label>
+                                <input type="text" class="form-control" id="name" name="name" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="surname" class="col-form-label">Last Name</label>
+                                <input type="text" class="form-control" id="surname" name="surname" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="age" class="col-form-label">age</label>
+                                <input type="text" class="form-control" id="age" name="age" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="col-form-label">Email</label>
+                                <input type="text" class="form-control" id="email" name="email" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="col-form-label">Password</label>
+                                <input type="text" class="form-control" id="password" name="password" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="roles" class="col-form-label">Role</label>
+                                <input type="text" class="form-control" id="roles" name="roles" value="">
+                            </div>
+
+<!--                            </form>-->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" value="Edit" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            </form>
+
+        </div>
 
 
 

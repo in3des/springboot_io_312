@@ -61,8 +61,8 @@ public class PeopleController {
         return "people/edit";
     }
 
-//    @PatchMapping("/admin/{id}")
-    @PostMapping("/admin/{id}")
+    @PatchMapping("/admin/{id}")
+//    @PostMapping("/admin/{id}")
     public String UpdatePerson(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult,
                          @PathVariable("id") Long id) {
 
@@ -74,8 +74,8 @@ public class PeopleController {
         return "redirect:/admin";
     }
 
-//    @DeleteMapping("admin/{id}")
-    @PostMapping("/admin/{id}/delete")
+    @DeleteMapping("admin/{id}")
+//    @PostMapping("/admin/{id}/delete")
     public String deletePerson(@PathVariable("id") Long id) {
         peopleService.delete(id);
         return "redirect:/admin";
