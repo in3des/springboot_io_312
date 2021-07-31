@@ -148,7 +148,7 @@
 
                                                                 <td>
 
-                                                                    <button type="button" class="btn btn-info eBtnE" data-toggle="modal" data-target="#editModal"
+                                                                    <button type="button" class="btn btn-info eBtn" data-toggle="modal" data-target="#editModal"
                                                                             th:onclick="|window.location.href='@{/admin/edit/(id=${person.id})}'|"> Edit </button>
 
 <!--                                                            <a type="button" th:href="@{/admin/edit/(id=${person.id})}" class="btn btn-info eBtn"-->
@@ -179,7 +179,7 @@
 
 <!--                                                            <button class="btn btn-danger eBtn">Delete</button>-->
 
-                                                                    <button type="button" class="btn btn-danger eBtnD" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                                                                    <button type="button" class="btn btn-danger eBtn" data-toggle="modal" data-target="#deleteModal">Delete</button>
 <!--                                                                    <button type="button" class="btn btn-danger eBtn" data-toggle="modal" data-target="#editModal">Delete</button>-->
                                                                 </td>
                                                             </tr>
@@ -205,6 +205,10 @@
                         <!--            ++++ main table ++++-->
 
                     </div>
+
+
+
+
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
 
@@ -231,39 +235,34 @@
 
                                                         <div class="myFormNew">
 
-                                                        <form th:method="POST" th:action="@{/admin}" th:object="${person}">
+                                                        <form th:method="POST" th:action="@{/admin}" th:object="${person2}">
 
                                                             <div class="form-group col-sm-4 py-0" align="center">
                                                             <label for="nameNew" class="col-form-label font-weight-bold py-0"> First name </label>
-<!--                                                            <input type="text" class="form-control py-0" id="nameNew" name="name"/>-->
-                                                                <input type="text" class="form-control py-0" th:field="*{name}" id="nameNew" name="name"/>
+                                                            <input type="text" class="form-control py-0" th:field="*{name}" id="nameNew" name="name"/>
                                                             </div>
 
 
                                                             <div class="form-group col-sm-4 py-0" align="center">
                                                             <label for="surnameNew" class="col-form-label font-weight-bold py-0"> Last Name </label>
-<!--                                                            <input type="text" class="form-control py-0" id="surnameNew" name="surname"/>-->
                                                             <input type="text" class="form-control py-0" th:field="*{surname}" id="surnameNew" name="surname"/>
                                                             </div>
 
 
                                                             <div class="form-group col-sm-4 py-0" align="center">
                                                             <label for="ageNew" class="col-form-label font-weight-bold py-0"> Age </label>
-<!--                                                            <input type="text" class="form-control py-0" id="ageNew" name="age"/>-->
                                                             <input type="text" class="form-control py-0" th:field="*{age}" id="ageNew" name="age"/>
                                                             </div>
 
 
                                                             <div class="form-group col-sm-4 py-0" align="center">
                                                             <label for="emailNew" class="col-form-label font-weight-bold py-0"> Email </label>
-<!--                                                            <input type="text" class="form-control py-0" id="emailNew" name="email"/>-->
                                                             <input type="text" class="form-control py-0" th:field="*{email}" id="emailNew" name="email"/>
                                                             </div>
 
 
                                                             <div class="form-group col-sm-4 py-0" align="center">
                                                             <label for="passwordNew" class="col-form-label font-weight-bold py-0"> Password </label>
-<!--                                                            <input type="text" class="form-control py-0" id="passwordNew" name="password"/>-->
                                                             <input type="text" class="form-control py-0" th:field="*{password}" id="passwordNew" name="password"/>
                                                             </div>
 
@@ -273,35 +272,11 @@
                                                                 <div class="pt-0">  </div>
 
 
-                                                            <!--    manual ok-->
-                                                            <!--    <input type="text" th:field="*{roles}" id="role"/>-->
-                                                            <!--    <div style="color:red" th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>-->
-
-
                                                                 <select class="form-control" multiple name="roles" id="rolesNew" size="2">
-<!--                                                                    <option selected name="ROLE_USER" value="ROLE_USER">USER</option>-->
                                                                     <option th:field="*{roles}" th:value="'ROLE_ADMIN'" th:text="ADMIN"></option>-->
                                                                     <option th:field="*{roles}" th:value="'ROLE_USER'" th:text="USER"></option>
                                                                 </select>
 
-
-<!--                                                                <select th:field="*{roles}" id="rolesNew">-->
-<!--                                                                    <option th:value="'ROLE_ADMIN'" th:text="ADMIN"></option>-->
-<!--                                                                    <option th:value="'ROLE_USER'" th:text="USER"></option>-->
-<!--                                                                </select>-->
-
-                                                            <!--    <input type="checkbox" th:field="*{roles}" th:text="ADMIN" th:value="'ROLE_ADMIN'"/>-->
-                                                            <!--    <input type="checkbox" th:field="*{roles}" th:text="USER" th:value="'ROLE_USER'"/>-->
-
-<!--                                                            <input type="checkbox" th:field="*{roles}" th:text="ADMIN" th:value="'ROLE_ADMIN'"/>-->
-<!--                                                            <input type="checkbox" th:field="*{roles}" th:text="USER" th:value="'ROLE_USER'"/>-->
-
-                                                            <!--        <th:block th:each="role : ${person.getRoles()}">-->
-                                                            <!--            <input type="checkbox" name="sel_roles" id="role" th:field="*{roles}" th:value="${role.id}" th:text="${role.role}" />-->
-                                                            <!--        </th:block>-->
-
-                                                            <!--    <input type="checkbox" th:field="*{roles}" th:text="ADMIN" th:value="${roleAdmin.getName()}">-->
-                                                            <!--    <input type="checkbox" th:field="*{roles}" th:text="USER" th:value="${roleUser.getName()}">-->
                                                             </div>
 
                                                             <button type="submit" class="btn btn-success">Add new user</button>
@@ -368,32 +343,32 @@
                         <div class="modal-body col-sm-7">
 
                             <div class="form-group" align="center">
-                                <label for="id" class="col-form-label font-weight-bold">ID</label>
-                                <input type="text" class="form-control" id="id" name="id" readonly>
+                                <label for="idEdit" class="col-form-label font-weight-bold">ID</label>
+                                <input type="text" class="form-control" th:field="*{person.getId()}" id="idEdit" name="id" readonly>
                             </div>
                             <div class="form-group" align="center">
-                                <label for="name" class="col-form-label font-weight-bold">First Name</label>
-                                <input type="text" class="form-control" id="name" name="name">
+                                <label for="nameEdit" class="col-form-label font-weight-bold">First Name</label>
+                                <input type="text" class="form-control" id="nameEdit" name="name">
                             </div>
                             <div class="form-group" align="center">
-                                <label for="surname" class="col-form-label font-weight-bold">Last Name</label>
-                                <input type="text" class="form-control" id="surname" name="surname">
+                                <label for="surnameEdit" class="col-form-label font-weight-bold">Last Name</label>
+                                <input type="text" class="form-control" id="surnameEdit" name="surname">
                             </div>
                             <div class="form-group" align="center">
-                                <label for="age" class="col-form-label font-weight-bold">Age</label>
-                                <input type="text" class="form-control" id="age" name="age">
+                                <label for="ageEdit" class="col-form-label font-weight-bold">Age</label>
+                                <input type="text" class="form-control" id="ageEdit" name="age">
                             </div>
                             <div class="form-group" align="center">
-                                <label for="email" class="col-form-label font-weight-bold">Email</label>
-                                <input type="text" class="form-control" id="email" name="email">
+                                <label for="emailEdit" class="col-form-label font-weight-bold">Email</label>
+                                <input type="text" class="form-control" id="emailEdit" name="email">
                             </div>
                             <div class="form-group" align="center">
-                                <label for="password" class="col-form-label font-weight-bold">Password</label>
-                                <input type="text" class="form-control" id="password" name="password">
+                                <label for="passwordEdit" class="col-form-label font-weight-bold">Password</label>
+                                <input type="text" class="form-control" id="passwordEdit" name="password">
                             </div>
                             <div class="form-group" align="center">
-                                <label for="roles" class="col-form-label font-weight-bold">Role</label>
-                                <input type="text" class="form-control" id="roles" name="roles">
+                                <label for="rolesEdit" class="col-form-label font-weight-bold">Role</label>
+                                <input type="text" class="form-control" id="rolesEdit" name="roles">
                             </div>
 
                         </div>
@@ -420,7 +395,7 @@
 <div class="myFormDelete">
 
     <!--            <form th:action="@{/admin/{id}/edit(id=${person.getId()})}" method="post">-->
-    <form th:action="@{/admin/edit/(id=${person.getId()})}" method="delete">
+    <form th:action="@{/admin/delete/(id=${person.getId()})}" method="delete">
 
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -503,7 +478,9 @@
 <!--        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"-->
 <!--        crossorigin="anonymous"></script>-->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>-->
+
+<script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -526,18 +503,18 @@
 
 <script>
     $(document).ready(function(){
-        $('.table .eBtnE').on('click', function(event){
+        $('.table .eBtn').on('click', function(event){
             event.preventDefault();
             var href = $(this).attr('href');
 
             $.get(href, function (person, status) {
-                $('.myForm #id').val(person.id);
-                $('.myForm #name').val(person.name);
-                $('.myForm #surname').val(person.surname);
-                $('.myForm #age').val(person.age);
-                $('.myForm #email').val(person.email);
-                $('.myForm #password').val(person.password);
-                $('.myForm #roles').val(person.roles);
+                $('.myFormEdit #id').val(person.id);
+                $('.myFormEdit #name').val(person.name);
+                $('.myFormEdit #surname').val(person.surname);
+                $('.myFormEdit #age').val(person.age);
+                $('.myFormEdit #email').val(person.email);
+                $('.myFormEdit #password').val(person.password);
+                $('.myFormEdit #roles').val(person.roles);
 
             });
 
@@ -548,18 +525,17 @@
 
 <script>
     $(document).ready(function(){
-        $('.table .eBtnD').on('click', function(event){
+        $('.table .eBtn').on('click', function(event){
             // event.preventDefault();
             // var href = $(this).attr('href');
             //
             // $.get(href, function (person, status) {
-            //     $('.myForm #id').val(person.id);
-            //     $('.myForm #name').val(person.name);
-            //     $('.myForm #surname').val(person.surname);
-            //     $('.myForm #age').val(person.age);
-            //     $('.myForm #email').val(person.email);
-            //     $('.myForm #password').val(person.password);
-            //     $('.myForm #roles').val(person.roles);
+            //     $('.myFormDelete #id').val(person.id);
+            //     $('.myFormDelete #name').val(person.name);
+            //     $('.myFormDelete #surname').val(person.surname);
+            //     $('.myFormDelete #age').val(person.age);
+            //     $('.myFormDelete #email').val(person.email);
+            //     $('.myFormDelete #roles').val(person.roles);
             //
             // });
 

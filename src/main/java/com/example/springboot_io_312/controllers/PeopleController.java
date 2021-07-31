@@ -31,6 +31,7 @@ public class PeopleController {
 //        System.out.println("simple - " + principal.getName());
         model.addAttribute("people", peopleService.index());
         model.addAttribute("person", peopleService.findPersonByEmail(((Person) authentication.getPrincipal()).getEmail()));
+        model.addAttribute("person2", new Person());
         return "people/index";
     }
 
@@ -68,10 +69,10 @@ public class PeopleController {
 //        return "people/edit";
 //    }
 
-    @GetMapping("/findone")
+    @GetMapping("/newempty")
     @ResponseBody
-    public Person findOne(Long id) {
-        return peopleService.show(id);
+    public Person newEmpty() {
+        return new Person();
     }
 
     @PatchMapping("/admin/{id}")
@@ -87,11 +88,13 @@ public class PeopleController {
         return "redirect:/admin";
     }
 
-    @DeleteMapping("admin/{id}")
+//    @DeleteMapping("admin/{id}")
+    @DeleteMapping("admin/delete/{id}")
+    @ResponseBody
 //    @PostMapping("/admin/{id}/delete")
-    public String deletePerson(@PathVariable("id") Long id) {
+    public void deletePerson(@PathVariable("id") Long id) {
         peopleService.delete(id);
-        return "redirect:/admin";
+//        return "redirect:/admin";
     }
 
 
