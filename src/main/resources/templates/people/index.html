@@ -70,53 +70,70 @@
 <!--        ============ right body ============-->
 
         <div class="col-lg-10 bg-light">
+
             <div class="container-fluid vh-100">
 
                 <div class="pt-2">  </div>
                 <p class="h1" valign="center" align="left"> Admin panel </p>
                 <div class="pt-2">  </div>
 
-                <div class="card">
-                    <div class="card-block">
-                        <table class="table table-hover table-flush">
-                            <thead>
-                            <tr style="background-color: #f2f2f2">
-                                <th>
-                                    <p class="h4" valign="center" align="left"> All users </p>
-                                </th>
-                            </tr>
-                            </thead>
 
-                            <tbody>
-                            <tr>
-                                <td>
+                <!--            ++++ nav-tabs ++++-->
 
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                            <div class="col">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Users table</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">New User</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-                                                <table class="table table-hover table-striped">
-                                                    <thead>
-                                                    <tr>
-                                                        <th>ID</th>
-                                                        <th>First Name</th>
-                                                        <th>Last Name</th>
-                                                        <th>Age</th>
-                                                        <th>Email</th>
-                                                        <th>Role</th>
-                                                        <th>Edit</th>
-                                                        <th>Delete</th>
-                                                    </tr>
-                                                    </thead>
+                        <!--            ++++ main table ++++-->
 
-                                                    <tbody>
-                                                    <tr th:each="person, state : ${people}">
-                                                        <td th:utext="${person.getId()}">..</td>
-                                                        <td th:utext="${person.getName()}">..</td>
-                                                        <td th:utext="${person.getSurname()}">..</td>
-                                                        <td th:utext="${person.getAge()}">..</td>
-                                                        <td th:utext="${person.getEmail()}">..</td>
-                                                        <td>
+                        <div class="card">
+                            <div class="card-block">
+                                <table class="table table-hover table-flush">
+                                    <thead>
+                                    <tr style="background-color: #f2f2f2">
+                                        <th>
+                                            <p class="h4" valign="center" align="left"> All users </p>
+                                        </th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr>
+                                        <td>
+
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col">
+
+                                                        <table class="table table-hover table-striped">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>ID</th>
+                                                                <th>First Name</th>
+                                                                <th>Last Name</th>
+                                                                <th>Age</th>
+                                                                <th>Email</th>
+                                                                <th>Role</th>
+                                                                <th>Edit</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+                                                            </thead>
+
+                                                            <tbody>
+                                                            <tr th:each="person, state : ${people}">
+                                                                <td th:utext="${person.getId()}">..</td>
+                                                                <td th:utext="${person.getName()}">..</td>
+                                                                <td th:utext="${person.getSurname()}">..</td>
+                                                                <td th:utext="${person.getAge()}">..</td>
+                                                                <td th:utext="${person.getEmail()}">..</td>
+                                                                <td>
 
                         <span th:each="roleInList, iStat : ${person.getRoles()}"
                               th:text="!${iStat.last} ?
@@ -124,47 +141,158 @@
                         : (${#strings.substring(roleInList.role,5)})">
                         </span>
 
-                                                        </td>
+                                                                </td>
 
-                                                        <td>
-<!--                                                            <a class="btn btn-info eBtn">Edit</a>-->
+                                                                <td>
+                                                                    <!--                                                            <a type="button" th:href="@{/admin/edit/(id=${person.id})}" class="btn btn-info eBtn">Edit</a>-->
 
-                                                            <form th:action="@{/admin/{id}/edit(id=${person.getId()})}">
-                                                                <input type="submit" value="EDIT"/>
-                                                            </form>
+                                                                    <button type="button" class="btn btn-info eBtn" data-toggle="modal" data-target="#editModal"
+                                                                            th:onclick="|window.location.href='@{/admin/edit/(id=${person.id})}'|"> Edit </button>
 
-<!--                                                            <button type="submit" class="btn btn-info" onclick="@{/admin/{id}/edit(id=${person.getId()})}">-->
-<!--                                                                Edit-->
-<!--                                                            </button>-->
-                                                        </td>
-                                                        <td>
-                                                            <form th:method="DELETE" th:action="@{/admin/{id}(id=${person.getId()})}">
-                                                                <input type="submit" value="DELETE"/>
-                                                            </form>
-                                                        </td>
-                                                    </tr>
-                                                    </tbody>
+                                                                    <!--                                                            <form th:action="@{/admin/{id}/edit(id=${person.getId()})}">-->
+                                                                    <!--                                                                <input type="submit" value="EDIT"/>-->
+                                                                    <!--                                                            </form>-->
 
-                                                </table>
+                                                                    <!--                                                            <button type="submit" class="btn btn-info" onclick="@{/admin/{id}/edit(id=${person.getId()})}">-->
+                                                                    <!--                                                                Edit-->
+                                                                    <!--                                                            </button>-->
+                                                                </td>
+                                                                <td>
+                                                                    <!--                                                            <form th:method="DELETE" th:action="@{/admin/{id}(id=${person.getId()})}">-->
+                                                                    <!--                                                                <input type="submit" value="DELETE"/>-->
+                                                                    <!--                                                            </form>-->
 
+                                                                    <!--                                                            <button class="btn btn-danger eBtn">Delete</button>-->
+
+                                                                    <button type="button" class="btn btn-danger eBtn" data-toggle="modal" data-target="#editModal">Delete</button>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+
+                                                        </table>
+
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
 
 
-                                </td>
+                                        </td>
 
-                            </tr>
+                                    </tr>
 
-                            </tbody>
-                        </table>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+                        <!--            ++++ main table ++++-->
+
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+
+                        <!--            ++++ new user ++++-->
+
+                        <div class="card">
+                            <div class="card-block">
+                                <table class="table table-hover table-flush">
+                                    <thead>
+                                    <tr style="background-color: #f2f2f2">
+                                        <th>
+                                            <p class="h4" valign="center" align="left"> Add new user </p>
+                                        </th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr>
+                                        <td>
+
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col">
+
+                                                        <form th:method="POST" th:action="@{/admin}" th:object="${person}">
+                                                            <label for="nameNew">Enter name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </label>
+                                                            <input type="text" th:field="*{name}" id="nameNew" name="name"/>
+                                                            <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                                                            <br>
+                                                            <label for="surnameNew">Enter surname: &nbsp&nbsp</label>
+                                                            <input type="text" th:field="*{surname}" id="surnameNew" name="surname"/>
+                                                            <div style="color:red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></div>
+                                                            <br>
+                                                            <label for="ageNew">Enter age: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </label>
+                                                            <input type="text" th:field="*{age}" id="ageNew" name="age"/>
+                                                            <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
+                                                            <br>
+                                                            <label for="emailNew">Enter email: &nbsp&nbsp&nbsp&nbsp&nbsp </label>
+                                                            <input type="text" th:field="*{email}" id="emailNew" name="email"/>
+                                                            <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                                                            <br>
+                                                            <label for="passwordNew">Enter password: </label>
+                                                            <input type="text" th:field="*{password}" id="passwordNew" name="password"/>
+                                                            <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                                                            <br>
+                                                            <label for="rolesNew">Enter role: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </label>
+
+                                                            <!--    manual ok-->
+                                                            <!--    <input type="text" th:field="*{roles}" id="role"/>-->
+                                                            <!--    <div style="color:red" th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>-->
+
+                                                            <!--    <select th:field="*{roles}" id="role">-->
+                                                            <!--        <option th:value="'ROLE_ADMIN'" th:text="ADMIN"></option>-->
+                                                            <!--        <option th:value="'ROLE_USER'" th:text="USER"></option>-->
+                                                            <!--    </select>-->
+
+                                                            <!--    <input type="checkbox" th:field="*{roles}" th:text="ADMIN" th:value="'ROLE_ADMIN'"/>-->
+                                                            <!--    <input type="checkbox" th:field="*{roles}" th:text="USER" th:value="'ROLE_USER'"/>-->
+
+                                                            <input type="checkbox" th:field="*{roles}" th:text="ADMIN" th:value="'ROLE_ADMIN'"/>
+                                                            <input type="checkbox" th:field="*{roles}" th:text="USER" th:value="'ROLE_USER'"/>
+
+                                                            <!--        <th:block th:each="role : ${person.getRoles()}">-->
+                                                            <!--            <input type="checkbox" name="sel_roles" id="role" th:field="*{roles}" th:value="${role.id}" th:text="${role.role}" />-->
+                                                            <!--        </th:block>-->
+
+                                                            <!--    <input type="checkbox" th:field="*{roles}" th:text="ADMIN" th:value="${roleAdmin.getName()}">-->
+                                                            <!--    <input type="checkbox" th:field="*{roles}" th:text="USER" th:value="${roleUser.getName()}">-->
+
+                                                            <br><br>
+                                                            <input type="submit" value="Save!"/>
+                                                        </form>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </td>
+
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+                        <!--            ++++ new user ++++-->
+
 
                     </div>
                 </div>
 
+                <!--            ++++ nav-tabs ++++-->
+
+
+
+
             </div>
 
         </div>
+
+
 
     </div>
 </div>
@@ -176,7 +304,8 @@
 
         <div class="myForm">
 
-            <form th:action="@{/admin/{id}/edit(id=${person.getId()})}" method="post">
+<!--            <form th:action="@{/admin/{id}/edit(id=${person.getId()})}" method="post">-->
+            <form th:action="@{/admin/edit/(id=${person.getId()})}" method="post">
 
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -189,32 +318,32 @@
                         </div>
                         <div class="modal-body">
 <!--                            <form>-->
-                            <div class="form-group">
-                                <label for="id" class="col-form-label">ID</label>
+                            <div class="form-group" align="center">
+                                <label for="id" class="col-form-label font-weight-bold">ID</label>
                                 <input type="text" class="form-control" id="id" name="id" value="">
                             </div>
-                            <div class="form-group">
-                                <label for="name" class="col-form-label">First Name</label>
+                            <div class="form-group" align="center">
+                                <label for="name" class="col-form-label font-weight-bold">First Name</label>
                                 <input type="text" class="form-control" id="name" name="name" value="">
                             </div>
-                            <div class="form-group">
-                                <label for="surname" class="col-form-label">Last Name</label>
+                            <div class="form-group" align="center">
+                                <label for="surname" class="col-form-label font-weight-bold">Last Name</label>
                                 <input type="text" class="form-control" id="surname" name="surname" value="">
                             </div>
-                            <div class="form-group">
-                                <label for="age" class="col-form-label">age</label>
+                            <div class="form-group" align="center">
+                                <label for="age" class="col-form-label font-weight-bold">Age</label>
                                 <input type="text" class="form-control" id="age" name="age" value="">
                             </div>
-                            <div class="form-group">
-                                <label for="email" class="col-form-label">Email</label>
+                            <div class="form-group" align="center">
+                                <label for="email" class="col-form-label font-weight-bold">Email</label>
                                 <input type="text" class="form-control" id="email" name="email" value="">
                             </div>
-                            <div class="form-group">
-                                <label for="password" class="col-form-label">Password</label>
+                            <div class="form-group" align="center">
+                                <label for="password" class="col-form-label font-weight-bold">Password</label>
                                 <input type="text" class="form-control" id="password" name="password" value="">
                             </div>
-                            <div class="form-group">
-                                <label for="roles" class="col-form-label">Role</label>
+                            <div class="form-group" align="center">
+                                <label for="roles" class="col-form-label font-weight-bold">Role</label>
                                 <input type="text" class="form-control" id="roles" name="roles" value="">
                             </div>
 
@@ -222,7 +351,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <input type="submit" class="btn btn-primary" value="Edit" />
+                            <button type="submit" class="btn btn-primary" value="Edit" />
                         </div>
                     </div>
                 </div>
@@ -265,11 +394,37 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
+<!--<script th:src="@{js/main.js}" src="../../static/js/main.js"></script>-->
+<!--<script type="text/javascript" src="/js/main.js"></script>-->
+
 <script>
     $(document).ready(function() {
         $('li').click(function() {
             $('li.list-group-item.active').removeClass("active");
             $(this).addClass("active");
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        $('.table .eBtn').on('click', function(event){
+            event.preventDefault();
+            var href = $(this).attr('href');
+
+            $.get(href, function (person, status) {
+                $('.myForm #id').val(person.id);
+                $('.myForm #name').val(person.name);
+                $('.myForm #surname').val(person.surname);
+                $('.myForm #age').val(person.age);
+                $('.myForm #email').val(person.email);
+                $('.myForm #password').val(person.password);
+                $('.myForm #roles').val(person.roles);
+
+            });
+
+        $('.myForm #editModal').modal();
         });
     });
 </script>

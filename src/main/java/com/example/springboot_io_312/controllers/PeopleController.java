@@ -2,6 +2,7 @@ package com.example.springboot_io_312.controllers;
 
 import com.example.springboot_io_312.entity.Person;
 import com.example.springboot_io_312.service.PeopleService;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -55,11 +56,17 @@ public class PeopleController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/admin/{id}/edit")
-    public String showEditPersonPage(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("person", peopleService.show(id));
-        return "people/edit";
+//    @GetMapping("/admin/{id}/edit")
+    @GetMapping("/admin/edit")
+    @ResponseBody
+    public Person showEditPersonPage(Long id) {
+        return peopleService.show(id);
     }
+
+//    public String showEditPersonPage(@PathVariable("id") Long id, Model model) {
+//        model.addAttribute("person", peopleService.show(id));
+//        return "people/edit";
+//    }
 
     @PatchMapping("/admin/{id}")
 //    @PostMapping("/admin/{id}")
