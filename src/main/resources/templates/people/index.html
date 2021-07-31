@@ -78,6 +78,9 @@
                 <div class="pt-2">  </div>
 
 
+
+
+
                 <!--            ++++ nav-tabs ++++-->
 
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -144,13 +147,22 @@
                                                                 </td>
 
                                                                 <td>
+
+                                                                    <button type="button" class="btn btn-info eBtnE" data-toggle="modal" data-target="#editModal"
+                                                                            th:onclick="|window.location.href='@{/admin/edit/(id=${person.id})}'|"> Edit </button>
+
+<!--                                                            <a type="button" th:href="@{/admin/edit/(id=${person.id})}" class="btn btn-info eBtn"-->
+<!--                                                                    data-toggle="modal" data-target="#editModal">Edit222</a>-->
+
+
+
+
 <!--                                                            <a type="button" th:href="@{/admin/edit/(id=${person.id})}" class="btn btn-info eBtn"-->
 <!--                                                                    data-toggle="modal" data-target="#editModal">Edit</a>-->
 
-                                                            <a type="button" class="btn btn-info eBtn" data-toggle="modal" data-target="#editModal">Edit</a>
+<!--                                                            <a type="button" class="btn btn-info eBtn" data-toggle="modal" data-target="#editModal">Edit</a>-->
 
-<!--                                                            <button type="button" class="btn btn-info eBtn" data-toggle="modal" data-target="#editModal"-->
-<!--                                                                    th:onclick="|window.location.href='@{/admin/edit/(id=${person.id})}'|"> Edit </button>-->
+
 
 <!--                                                            <form th:action="@{/admin/{id}/edit(id=${person.getId()})}">-->
 <!--                                                                <input type="submit" value="EDIT"/>-->
@@ -167,7 +179,8 @@
 
 <!--                                                            <button class="btn btn-danger eBtn">Delete</button>-->
 
-                                                                    <button type="button" class="btn btn-danger eBtn" data-toggle="modal" data-target="#editModal">Delete</button>
+                                                                    <button type="button" class="btn btn-danger eBtnD" data-toggle="modal" data-target="#deleteModal">Delete</button>
+<!--                                                                    <button type="button" class="btn btn-danger eBtn" data-toggle="modal" data-target="#editModal">Delete</button>-->
                                                                 </td>
                                                             </tr>
                                                             </tbody>
@@ -216,13 +229,15 @@
                                                 <div class="row">
                                                     <div class="col">
 
+                                                        <div class="myFormNew">
+
                                                         <form th:method="POST" th:action="@{/admin}" th:object="${person}">
 
                                                             <div class="form-group col-sm-4 py-0" align="center">
                                                             <label for="nameNew" class="col-form-label font-weight-bold py-0"> First name </label>
 <!--                                                            <input type="text" class="form-control py-0" id="nameNew" name="name"/>-->
-                                                            <input type="text" class="form-control py-0" th:field="*{name}" id="nameNew" name="name"/>
-                                                            <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+<!--                                                            <input type="text" class="form-control py-0" th:field="*{name}" id="nameNew" name="name"/>-->
+                                                                <input type="text" class="form-control py-0" th:field="*{name}" th:value="'1'" id="nameNew" name="name"/>
                                                             </div>
 
 
@@ -230,7 +245,6 @@
                                                             <label for="surnameNew" class="col-form-label font-weight-bold py-0"> Last Name </label>
 <!--                                                            <input type="text" class="form-control py-0" id="surnameNew" name="surname"/>-->
                                                             <input type="text" class="form-control py-0" th:field="*{surname}" id="surnameNew" name="surname"/>
-                                                            <div style="color:red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></div>
                                                             </div>
 
 
@@ -238,7 +252,6 @@
                                                             <label for="ageNew" class="col-form-label font-weight-bold py-0"> Age </label>
 <!--                                                            <input type="text" class="form-control py-0" id="ageNew" name="age"/>-->
                                                             <input type="text" class="form-control py-0" th:field="*{age}" id="ageNew" name="age"/>
-                                                            <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
                                                             </div>
 
 
@@ -246,7 +259,6 @@
                                                             <label for="emailNew" class="col-form-label font-weight-bold py-0"> Email </label>
 <!--                                                            <input type="text" class="form-control py-0" id="emailNew" name="email"/>-->
                                                             <input type="text" class="form-control py-0" th:field="*{email}" id="emailNew" name="email"/>
-                                                            <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
                                                             </div>
 
 
@@ -254,7 +266,6 @@
                                                             <label for="passwordNew" class="col-form-label font-weight-bold py-0"> Password </label>
 <!--                                                            <input type="text" class="form-control py-0" id="passwordNew" name="password"/>-->
                                                             <input type="text" class="form-control py-0" th:field="*{password}" id="passwordNew" name="password"/>
-                                                            <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
                                                             </div>
 
 
@@ -267,16 +278,24 @@
                                                             <!--    <input type="text" th:field="*{roles}" id="role"/>-->
                                                             <!--    <div style="color:red" th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>-->
 
-                                                            <!--    <select th:field="*{roles}" id="role">-->
-                                                            <!--        <option th:value="'ROLE_ADMIN'" th:text="ADMIN"></option>-->
-                                                            <!--        <option th:value="'ROLE_USER'" th:text="USER"></option>-->
-                                                            <!--    </select>-->
+
+                                                                <select class="form-control" multiple name="roles" id="rolesNew" size="2">
+<!--                                                                    <option selected name="ROLE_USER" value="ROLE_USER">USER</option>-->
+                                                                    <option th:field="*{roles}" th:value="'ROLE_ADMIN'" th:text="ADMIN"></option>-->
+                                                                    <option th:field="*{roles}" th:value="'ROLE_USER'" th:text="USER"></option>
+                                                                </select>
+
+
+<!--                                                                <select th:field="*{roles}" id="rolesNew">-->
+<!--                                                                    <option th:value="'ROLE_ADMIN'" th:text="ADMIN"></option>-->
+<!--                                                                    <option th:value="'ROLE_USER'" th:text="USER"></option>-->
+<!--                                                                </select>-->
 
                                                             <!--    <input type="checkbox" th:field="*{roles}" th:text="ADMIN" th:value="'ROLE_ADMIN'"/>-->
                                                             <!--    <input type="checkbox" th:field="*{roles}" th:text="USER" th:value="'ROLE_USER'"/>-->
 
-                                                            <input type="checkbox" th:field="*{roles}" th:text="ADMIN" th:value="'ROLE_ADMIN'"/>
-                                                            <input type="checkbox" th:field="*{roles}" th:text="USER" th:value="'ROLE_USER'"/>
+<!--                                                            <input type="checkbox" th:field="*{roles}" th:text="ADMIN" th:value="'ROLE_ADMIN'"/>-->
+<!--                                                            <input type="checkbox" th:field="*{roles}" th:text="USER" th:value="'ROLE_USER'"/>-->
 
                                                             <!--        <th:block th:each="role : ${person.getRoles()}">-->
                                                             <!--            <input type="checkbox" name="sel_roles" id="role" th:field="*{roles}" th:value="${role.id}" th:text="${role.role}" />-->
@@ -288,6 +307,8 @@
 
                                                             <button type="submit" class="btn btn-success">Add new user</button>
                                                         </form>
+
+                                                        </div>
 
                                                     </div>
                                                 </div>
@@ -329,12 +350,12 @@
 
 <!--        ============ modal edit ============-->
 
-        <div class="myForm">
+        <div class="myFormEdit">
 
 <!--            <form th:action="@{/admin/{id}/edit(id=${person.getId()})}" method="post">-->
             <form th:action="@{/admin/edit/(id=${person.getId()})}" method="post">
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -343,39 +364,42 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-<!--                            <form>-->
+
+                        <div class="container" align="center">
+                        <div class="modal-body col-sm-7">
+
                             <div class="form-group" align="center">
                                 <label for="id" class="col-form-label font-weight-bold">ID</label>
-                                <input type="text" class="form-control" id="id" name="id" value="">
+                                <input type="text" class="form-control" id="id" name="id" readonly>
                             </div>
                             <div class="form-group" align="center">
                                 <label for="name" class="col-form-label font-weight-bold">First Name</label>
-                                <input type="text" class="form-control" id="name" name="name" value="">
+                                <input type="text" class="form-control" id="name" name="name">
                             </div>
                             <div class="form-group" align="center">
                                 <label for="surname" class="col-form-label font-weight-bold">Last Name</label>
-                                <input type="text" class="form-control" id="surname" name="surname" value="">
+                                <input type="text" class="form-control" id="surname" name="surname">
                             </div>
                             <div class="form-group" align="center">
                                 <label for="age" class="col-form-label font-weight-bold">Age</label>
-                                <input type="text" class="form-control" id="age" name="age" value="">
+                                <input type="text" class="form-control" id="age" name="age">
                             </div>
                             <div class="form-group" align="center">
                                 <label for="email" class="col-form-label font-weight-bold">Email</label>
-                                <input type="text" class="form-control" id="email" name="email" value="">
+                                <input type="text" class="form-control" id="email" name="email">
                             </div>
                             <div class="form-group" align="center">
                                 <label for="password" class="col-form-label font-weight-bold">Password</label>
-                                <input type="text" class="form-control" id="password" name="password" value="">
+                                <input type="text" class="form-control" id="password" name="password">
                             </div>
                             <div class="form-group" align="center">
                                 <label for="roles" class="col-form-label font-weight-bold">Role</label>
-                                <input type="text" class="form-control" id="roles" name="roles" value="">
+                                <input type="text" class="form-control" id="roles" name="roles">
                             </div>
 
-<!--                            </form>-->
                         </div>
+                        </div>
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <input type="submit" class="btn btn-primary" value="Edit" />
@@ -388,8 +412,71 @@
 
         </div>
 
+<!--        ============ modal edit ============-->
 
 
+
+<!--        ============ modal delete ============-->
+
+<div class="myFormDelete">
+
+    <!--            <form th:action="@{/admin/{id}/edit(id=${person.getId()})}" method="post">-->
+    <form th:action="@{/admin/edit/(id=${person.getId()})}" method="delete">
+
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Delete User</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="container" align="center">
+                    <div class="modal-body col-sm-7">
+
+                        <div class="form-group" align="center">
+                            <label for="idDelete" class="col-form-label font-weight-bold">ID</label>
+                            <input type="text" class="form-control" id="idDelete" name="id" readonly>
+                        </div>
+                        <div class="form-group" align="center">
+                            <label for="nameDelete" class="col-form-label font-weight-bold">First Name</label>
+                            <input type="text" class="form-control" id="nameDelete" name="name" readonly>
+                        </div>
+                        <div class="form-group" align="center">
+                            <label for="surnameDelete" class="col-form-label font-weight-bold">Last Name</label>
+                            <input type="text" class="form-control" id="surnameDelete" name="surname" readonly>
+                        </div>
+                        <div class="form-group" align="center">
+                            <label for="ageDelete" class="col-form-label font-weight-bold">Age</label>
+                            <input type="text" class="form-control" id="ageDelete" name="age" readonly>
+                        </div>
+                        <div class="form-group" align="center">
+                            <label for="emailDelete" class="col-form-label font-weight-bold">Email</label>
+                            <input type="text" class="form-control" id="emailDelete" name="email" readonly>
+                        </div>
+                        <div class="form-group" align="center">
+                            <label for="rolesDelete" class="col-form-label font-weight-bold">Role</label>
+                            <input type="text" class="form-control" id="rolesDelete" name="roles" readonly>
+                        </div>
+
+                    </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-danger" value="Delete" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+<!--        ============ modal delete ============-->
 
 
 
@@ -412,9 +499,13 @@
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"-->
+<!--        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"-->
+<!--        crossorigin="anonymous"></script>-->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
@@ -436,7 +527,29 @@
 
 <script>
     $(document).ready(function(){
-        $('.table .eBtn').on('click', function(event){
+        $('.table .eBtnE').on('click', function(event){
+            event.preventDefault();
+            var href = $(this).attr('href');
+
+            $.get(href, function (person, status) {
+                $('.myForm #id').val(person.id);
+                $('.myForm #name').val(person.name);
+                $('.myForm #surname').val(person.surname);
+                $('.myForm #age').val(person.age);
+                $('.myForm #email').val(person.email);
+                $('.myForm #password').val(person.password);
+                $('.myForm #roles').val(person.roles);
+
+            });
+
+        $('.myFormEdit #editModal').modal();
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        $('.table .eBtnD').on('click', function(event){
             // event.preventDefault();
             // var href = $(this).attr('href');
             //
@@ -451,7 +564,7 @@
             //
             // });
 
-        $('.myForm #editModal').modal();
+            $('.myFormDelete #deleteModal').modal();
         });
     });
 </script>

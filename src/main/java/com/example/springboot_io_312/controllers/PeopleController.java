@@ -68,6 +68,12 @@ public class PeopleController {
 //        return "people/edit";
 //    }
 
+    @GetMapping("/findone")
+    @ResponseBody
+    public Person findOne(Long id) {
+        return peopleService.show(id);
+    }
+
     @PatchMapping("/admin/{id}")
 //    @PostMapping("/admin/{id}")
     public String UpdatePerson(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult,
