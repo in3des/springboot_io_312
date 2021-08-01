@@ -153,8 +153,6 @@
                                                                     <button type="button" class="btn btn-info eBtn" data-toggle="modal"
                                                                             th:attr="data-target='#editModal'+${person.getId()}"> Edit </button>
 
-<!--                                                                    <button type="button" class="btn btn-info eBtn" data-toggle="modal" data-target="#editModal"-->
-<!--                                                                            th:attrappend="data-target=${person.id}"> Edit </button>-->
 
 <!--                                                                            th:onclick="|window.location.href='@{/admin/edit/(id=${person.id})}'|"-->
 
@@ -187,23 +185,23 @@
                                                                                                 </div>
                                                                                                 <div class="form-group" align="center">
                                                                                                     <label for="nameEdit" class="col-form-label font-weight-bold">First Name</label>
-                                                                                                    <input type="text" class="form-control" id="nameEdit" name="name" th:value="*{name}">
+                                                                                                    <input type="text" class="form-control" id="nameEdit" name="name" th:value="*{name}" required>
                                                                                                 </div>
                                                                                                 <div class="form-group" align="center">
                                                                                                     <label for="surnameEdit" class="col-form-label font-weight-bold">Last Name</label>
-                                                                                                    <input type="text" class="form-control" id="surnameEdit" name="surname" th:value="*{surname}">
+                                                                                                    <input type="text" class="form-control" id="surnameEdit" name="surname" th:value="*{surname}" required>
                                                                                                 </div>
                                                                                                 <div class="form-group" align="center">
                                                                                                     <label for="ageEdit" class="col-form-label font-weight-bold">Age</label>
-                                                                                                    <input type="text" class="form-control" id="ageEdit" name="age" th:value="*{age}">
+                                                                                                    <input type="number" class="form-control" id="ageEdit" name="age" th:value="*{age}" min="0" max="200" step="1" required>
                                                                                                 </div>
                                                                                                 <div class="form-group" align="center">
                                                                                                     <label for="emailEdit" class="col-form-label font-weight-bold">Email</label>
-                                                                                                    <input type="text" class="form-control" id="emailEdit" name="email" th:value="*{email}">
+                                                                                                    <input type="text" class="form-control" id="emailEdit" name="email" th:value="*{email}" required>
                                                                                                 </div>
                                                                                                 <div class="form-group" align="center">
                                                                                                     <label for="passwordEdit" class="col-form-label font-weight-bold">Password</label>
-                                                                                                    <input type="text" class="form-control" id="passwordEdit" name="password" th:value="*{password}">
+                                                                                                    <input type="text" class="form-control" id="passwordEdit" name="password" th:value="*{password}" required>
                                                                                                 </div>
                                                                                                 <div class="form-group" align="center">
                                                                                                     <label for="rolesEdit" class="col-form-label font-weight-bold">Role</label>
@@ -256,8 +254,6 @@
                                                                     <button type="button" class="btn btn-danger eBtn" data-toggle="modal"
                                                                             th:attr="data-target='#deleteModal'+${person.id}">Delete</button>
 
-<!--                                                                    <button type="button" class="btn btn-danger eBtn" data-toggle="modal" data-target="#deleteModal"-->
-<!--                                                                            th:attrappend="data-target=${person.id}">Delete</button>-->
 
 <!--                                                                            th:onclick="|window.location.href='@{/admin/delete/(id=${person.id})}'|"-->
 
@@ -401,31 +397,32 @@
 
                                                             <div class="form-group col-sm-4 py-0" align="center">
                                                             <label for="nameNew" class="col-form-label font-weight-bold py-0"> First name </label>
-                                                            <input type="text" class="form-control py-0" th:field="*{name}" id="nameNew" name="name"/>
+                                                            <input type="text" class="form-control py-0" th:field="*{name}" id="nameNew" name="name" required/>
                                                             </div>
 
 
                                                             <div class="form-group col-sm-4 py-0" align="center">
                                                             <label for="surnameNew" class="col-form-label font-weight-bold py-0"> Last Name </label>
-                                                            <input type="text" class="form-control py-0" th:field="*{surname}" id="surnameNew" name="surname"/>
+                                                            <input type="text" class="form-control py-0" th:field="*{surname}" id="surnameNew" name="surname" required/>
                                                             </div>
 
 
                                                             <div class="form-group col-sm-4 py-0" align="center">
                                                             <label for="ageNew" class="col-form-label font-weight-bold py-0"> Age </label>
-                                                            <input type="text" class="form-control py-0" th:field="*{age}" id="ageNew" name="age"/>
+                                                            <input type="number" class="form-control py-0" th:field="*{age}" min="0" max="200" step="1" id="ageNew" name="age" required/>
+
                                                             </div>
 
 
                                                             <div class="form-group col-sm-4 py-0" align="center">
                                                             <label for="emailNew" class="col-form-label font-weight-bold py-0"> Email </label>
-                                                            <input type="text" class="form-control py-0" th:field="*{email}" id="emailNew" name="email"/>
+                                                            <input type="text" class="form-control py-0" th:field="*{email}" id="emailNew" name="email" required/>
                                                             </div>
 
 
                                                             <div class="form-group col-sm-4 py-0" align="center">
                                                             <label for="passwordNew" class="col-form-label font-weight-bold py-0"> Password </label>
-                                                            <input type="text" class="form-control py-0" th:field="*{password}" id="passwordNew" name="password"/>
+                                                            <input type="text" class="form-control py-0" th:field="*{password}" id="passwordNew" name="password" required/>
                                                             </div>
 
 
@@ -526,6 +523,12 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
+<script src="bootstrap-input-spinner.js"></script>
+
+<script>
+    $('input[type=number]').inputSpinner();
+</script>
 
 <!--<script th:src="@{js/main.js}" src="../../static/js/main.js"></script>-->
 <!--<script type="text/javascript" src="/js/main.js"></script>-->
