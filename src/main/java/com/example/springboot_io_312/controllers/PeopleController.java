@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -30,8 +31,9 @@ public class PeopleController {
     public String showIndexPage(Model model, Authentication authentication) {
 //        System.out.println("simple - " + principal.getName());
         model.addAttribute("people", peopleService.index());
-        model.addAttribute("person", peopleService.findPersonByEmail(((Person) authentication.getPrincipal()).getEmail()));
+        model.addAttribute("personA", peopleService.findPersonByEmail(((Person) authentication.getPrincipal()).getEmail()));
         model.addAttribute("person2", new Person());
+//        model.addAttribute("person3", peopleService.show(id));
         return "people/index";
     }
 
@@ -57,28 +59,17 @@ public class PeopleController {
         return "redirect:/admin";
     }
 
-//    @GetMapping("/admin/{id}/edit")
-    @GetMapping("/admin/edit")
-    @ResponseBody
-    public Person showEditPersonPage(Long id) {
-        return peopleService.show(id);
+
+
+    @GetMapping("/admin/{id}/edit")
+    public String showEditPersonPage(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("person", peopleService.show(id));
+        return "people/edit";
     }
 
-//    public String showEditPersonPage(@PathVariable("id") Long id, Model model) {
-//        model.addAttribute("person", peopleService.show(id));
-//        return "people/edit";
-//    }
-
-    @GetMapping("/newempty")
-    @ResponseBody
-    public Person newEmpty() {
-        return new Person();
-    }
-
-    @PatchMapping("/admin/{id}")
-//    @PostMapping("/admin/{id}")
+    @PostMapping("admin/{id}")
     public String UpdatePerson(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult,
-                         @PathVariable("id") Long id) {
+                               @PathVariable("id") Long id) {
 
         if (bindingResult.hasErrors()) {
             return "people/edit";
@@ -88,13 +79,57 @@ public class PeopleController {
         return "redirect:/admin";
     }
 
-//    @DeleteMapping("admin/{id}")
-    @DeleteMapping("admin/delete/{id}")
-    @ResponseBody
-//    @PostMapping("/admin/{id}/delete")
-    public void deletePerson(@PathVariable("id") Long id) {
-        peopleService.delete(id);
+
+
+
+
+
+//    =================================================================
+////    @GetMapping("/admin/{id}/edit")
+//    @GetMapping("/admin/edit")
+//    @ResponseBody                 // json working
+////    public Person showEditPersonPage(Long id) {
+////        return peopleService.show(id);
+////    }
+//
+//        public ModelAndView showEditPersonPage(Long id) {
+//        ModelAndView mav = new ModelAndView("people/edit");
+//        mav.addObject("person3", peopleService.show(id));
+//        return mav;
+//    }
+
+    //ok
+
+//    public Person showEditPersonPage(Long id, Model model) {
+//        model.addAttribute("person", peopleService.show(id));
+//        return peopleService.show(id);
+//    }
+
+//    public String showEditPersonPage(@PathVariable("id") Long id, Model model) {
+//        model.addAttribute("person", peopleService.show(id));
+//        return "people/edit";
+//    }
+
+
+//    @PatchMapping("/admin/edit/{id}")
+////    @PostMapping("/admin/{id}")
+//    public String UpdatePerson(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult,
+//                         @PathVariable("id") Long id) {
+//
+//        if (bindingResult.hasErrors()) {
+//            return "people/edit";
+//        }
+//
+//        peopleService.update(person, id);
 //        return "redirect:/admin";
+//    }
+//================================================================
+
+
+    @PostMapping("/admin/delete/{id}")
+    public String deletePerson(@PathVariable("id") Long id, Model model) {
+        peopleService.delete(id);
+        return "redirect:/admin";
     }
 
 
