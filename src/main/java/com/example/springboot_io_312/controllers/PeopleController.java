@@ -1,6 +1,7 @@
 package com.example.springboot_io_312.controllers;
 
 import com.example.springboot_io_312.entity.Person;
+import com.example.springboot_io_312.entity.Role;
 import com.example.springboot_io_312.service.PeopleService;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,6 @@ public class PeopleController {
     }
 
     @GetMapping("/admin")
-//    public String showIndexPage(Model model, Principal principal) {
     public String showIndexPage(Model model, Authentication authentication) {
 //        System.out.println("simple - " + principal.getName());
         model.addAttribute("people", peopleService.index());
@@ -70,6 +70,22 @@ public class PeopleController {
     @PostMapping("admin/{id}")
     public String UpdatePerson(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult,
                                @PathVariable("id") Long id) {
+
+        System.out.println("------------------------------");
+
+        System.out.println(person.getRoles());
+
+        System.out.println("user_id=" + id + " if user_role --> " + person.getRoles().toString().contains("ROLE_USER"));
+        System.out.println("user_id=" + id + " if admin_role --> " + person.getRoles().toString().contains("ROLE_ADMIN"));
+
+        System.out.println("------------------------------");
+
+        System.out.println("admin >>> " + person.checkAdmin());
+        System.out.println("user >>> " + person.checkUser());
+
+        System.out.println("------------------------------");
+
+
 
         if (bindingResult.hasErrors()) {
             return "people/edit";

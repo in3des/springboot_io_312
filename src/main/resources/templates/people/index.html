@@ -211,14 +211,18 @@
 
                                                                                                     <select class="form-control" multiple name="roles" id="rolesEdit" size="2">
 
-<!--                                                                                                        <option th:each="i : ${person.getRoles()}" th:selected="${i=='ROLE_ADMIN'}" th:name="*{roles}" th:value="${i}" th:text="ADMIN"></option>-->
-<!--                                                                                                        <option th:each="i : ${person.getRoles()}" th:selected="${i=='ROLE_USER'}" th:name="*{roles}" th:value="${i}" th:text="USER"></option>-->
+
+<!--                                                                                                        th:selected="${user.roles.contains(role)}"-->
+
+                                                                                                        <option th:selected="${person.checkAdmin()}" th:name="*{roles}" th:value="'ROLE_ADMIN'" th:text="ADMIN"></option>
+                                                                                                        <option th:selected="${person.checkUser()}" th:name="*{roles}" th:value="'ROLE_USER'" th:text="USER"></option>
 
 <!--                                                                                                        <option th:each="i : ${person.getRoles()}" th:selected="${i=='ROLE_ADMIN'}" th:name="*{roles}" th:value="'ROLE_ADMIN'" th:text="ADMIN"></option>-->
 <!--                                                                                                        <option th:each="i : ${person.getRoles()}" th:selected="${i=='ROLE_USER'}" th:name="*{roles}" th:value="'ROLE_USER'" th:text="USER"></option>-->
 
-                                                                                                        <option th:name="*{roles}" th:value="'ROLE_ADMIN'" th:text="ADMIN"></option>
-                                                                                                        <option th:name="*{roles}" th:value="'ROLE_USER'" th:text="USER"></option>
+<!--                                                                                                        <option th:name="*{roles}" th:value="'ROLE_ADMIN'" th:text="ADMIN"></option>-->
+<!--                                                                                                        <option th:name="*{roles}" th:value="'ROLE_USER'" th:text="USER"></option>-->
+
                                                                                                     </select>
 
                                                                                                 </div>

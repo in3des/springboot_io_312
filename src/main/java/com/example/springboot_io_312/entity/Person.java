@@ -125,6 +125,14 @@ public class Person implements UserDetails {
         return roleList;
     }
 
+    public boolean checkAdmin() {
+        return this.roles.toString().contains("ADMIN");
+    }
+
+    public boolean checkUser() {
+        return this.roles.toString().contains("USER");
+    }
+
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
